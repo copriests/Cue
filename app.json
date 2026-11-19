@@ -15,7 +15,8 @@
         "UIBackgroundModes": [
           "audio"
         ],
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSPhotoLibraryUsageDescription": "Cue does not need access to your photos or videos to display or scroll your scripts."
       }
     },
     "android": {
