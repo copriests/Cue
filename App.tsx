@@ -18,6 +18,8 @@ import { activateKeepAwakeAsync, deactivateKeepAwake } from "expo-keep-awake";
 import { Cue, CuePreview, CueState } from "./src/native";
 import { duration, parseScripts, SAMPLE, Script, words } from "./src/model";
 
+import { Recorder } from "./src/Recorder";
+
 const KEY = "cue.scripts.v1";
 const initial: CueState = {
   index: 0,
@@ -62,6 +64,7 @@ export default function App() {
   const [title, setTitle] = useState("A little cue");
   const [text, setText] = useState(SAMPLE);
   const [screen, setScreen] = useState<"write" | "read">("write");
+  const [recordingScreen, setRecordingScreen] = useState(false);
   const [mode, setMode] = useState<"timed" | "voice">("timed");
   const [wpm, setWpm] = useState(130);
   const [font, setFont] = useState(42);
@@ -220,6 +223,10 @@ export default function App() {
     });
     setScreen("write");
   }
+  if (recordingScreen) {
+    return <Recorder words={tokens} pace={wpm} fontSize={Math.min(font, 36)}
+      onClose={() => setRecordingScreen(false)} />;
+  }
   return (
     <SafeAreaView style={s.safe}>
       <StatusBar style="light" />
@@ -335,6 +342,16 @@ export default function App() {
                   </Text>
                 </View>
               </View>
+              <Button
+                label="Record in Cue"
+                primary
+                disabled={!ready || !tokens.length || locked}
+                onPress={() => {
+                  saveCurrent();
+                  Cue?.pause();
+                  setRecordingScreen(true);
+                }}
+              />
               <Button
                 label="Rehearse this script  →"
                 primary
