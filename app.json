@@ -10,13 +10,14 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.copriests.cue",
       "infoPlist": {
-        "NSMicrophoneUsageDescription": "Cue listens to your voice to follow your script while you rehearse.",
+        "NSMicrophoneUsageDescription": "Cue records audio with your video and listens to help follow your script during rehearsal.",
         "NSSpeechRecognitionUsageDescription": "Cue matches on-device speech to your script so it can follow your pace.",
         "UIBackgroundModes": [
           "audio"
         ],
         "ITSAppUsesNonExemptEncryption": false,
-        "NSPhotoLibraryUsageDescription": "Cue does not need access to your photos or videos to display or scroll your scripts."
+        "NSPhotoLibraryUsageDescription": "Cue does not need access to your photos or videos to display or scroll your scripts.",
+        "NSCameraUsageDescription": "Cue uses your camera to record video while you read your script."
       }
     },
     "android": {
@@ -39,6 +40,9 @@
       "eas": {
         "projectId": "71b165e4-6408-4b8b-afa2-c0eeaf397ed8"
       }
-    }
+    },
+    "plugins": [
+      "expo-sharing"
+    ]
   }
 }
